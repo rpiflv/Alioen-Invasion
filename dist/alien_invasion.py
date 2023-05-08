@@ -69,7 +69,6 @@ class AlienInvasion:
 
     def _create_lives_left(self, ships_left):
         for ship_number in range(ships_left):
-            print(ships_left)
             self._create_life(ship_number)
 
     def _create_life(self, ship_number):

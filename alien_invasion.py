@@ -117,6 +117,7 @@ class AlienInvasion:
             self.stats.game_active = True
             self.provide_highscore()
             self.scoreboard._prep_score()
+            self.scoreboard._prep_level()
             self.scoreboard._prep_high_score()
             pygame.mouse.set_visible(False)
 
@@ -141,6 +142,8 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            self.stats.level += 1
+            self.scoreboard._prep_level()
             # self.settings.alien_speed += 0.1
 
     def _check_fleet_edges(self):

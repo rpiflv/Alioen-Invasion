@@ -12,7 +12,7 @@ class Settings:
         self.bullet_color = (246, 235, 230)
         self.bullet_allowed = 7
 
-        self.speedup_scale = 1.1
+        self.speedup_scale = 1.15
         self._fleet_drop_speed = 20
         self.STAR_WIDTH = 2
         self.BIG_STAR_WIDTH = 4
