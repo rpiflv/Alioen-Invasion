@@ -12,7 +12,6 @@ from button import Button
 from scoreboard import Scoreboard
 import random
 
-
 class AlienInvasion:
     """Overall class to manage the app"""
 
@@ -22,7 +21,7 @@ class AlienInvasion:
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
-        # full screen mode
+        # use this for full screen mode
         # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
         # self.settings.screen_width = self.screen.get_rect().width
         # self.settings.screen_height = self.screen.get_rect().height
@@ -69,14 +68,12 @@ class AlienInvasion:
 
     def _create_lives_left(self, ships_left):
         for ship_number in range(ships_left):
-            print(ships_left)
             self._create_life(ship_number)
 
     def _create_life(self, ship_number):
         life = Lives(self)
         life_width, life_height = life.rect.size
         life.x = life_width + 2 * life_width * ship_number
-        # life.rect.x = self.settings.screen_width - 2 * life.x
         life.rect.x = life.x
         life.rect.y = self.settings.screen_height - life_height
         self.lives.add(life)
@@ -136,7 +133,6 @@ class AlienInvasion:
         collision = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
         if collision:
             self.stats.score += self.settings.alien_score
-            # self.scoreboard.check_high_score()
             self.scoreboard._prep_score()
         if not self.aliens:
             self.bullets.empty()
@@ -144,7 +140,6 @@ class AlienInvasion:
             self.settings.increase_speed()
             self.stats.level += 1
             self.scoreboard._prep_level()
-            # self.settings.alien_speed += 0.1
 
     def _check_fleet_edges(self):
         for alien in self.aliens.sprites():
@@ -211,8 +206,6 @@ class AlienInvasion:
         pygame.display.flip()
 
     def _ship_hit(self):
-        # To keep playing in case you still have ships, or new run.
-        # In case of high score, store it.
         if self.stats.ships_left > 1:
             self.stats.ships_left -= 1
             self.aliens.empty()
@@ -231,7 +224,6 @@ class AlienInvasion:
             pygame.mouse.set_visible(True)
 
     def provide_highscore(self):
-
         db = sqlite3.connect("highscores.sqlite")
         cursor = db.cursor()
         result = None
@@ -245,7 +237,6 @@ class AlienInvasion:
         return result
 
     def add_high_score(self):
-        # addinmg high score to the DB
         db = sqlite3.connect("highscores.sqlite")
         self.new_high = self.stats.score
         self.scoreboard._prep_high_score()
@@ -344,11 +335,7 @@ class AlienInvasion:
                 self._ship_hit() # same behaviour as ship hit
                 break
 
-
-
-
     def run_game(self):
-        """Start the MAIN LOOP"""
         self.populate_bg()
         while True:
             self.check_events()
@@ -357,7 +344,6 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
             self.update_screen()
-
 
 if __name__ == "__main__":
     ai = AlienInvasion()
