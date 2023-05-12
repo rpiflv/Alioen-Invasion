@@ -1,15 +1,15 @@
 import sys
 import pygame
 import sqlite3
-from settings import Settings
-from ship import Ship
-from bullet import Bullet
-from alien import Alien
-from lives import Lives
-from game_stats import GameStats
+from assets.settings import Settings
+from assets.ship import Ship
+from assets.bullet import Bullet
+from assets.alien import Alien
+from assets.lives import Lives
+from assets.game_stats import GameStats
 from time import sleep
-from button import Button
-from scoreboard import Scoreboard
+from assets.button import Button
+from assets.scoreboard import Scoreboard
 import random
 
 
@@ -336,16 +336,12 @@ class AlienInvasion:
             self.screen.blit(high_score_surface_current, high_score_surface_current_rect)
             pygame.display.flip()
 
-
     def _check_alien_bottom(self):
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
                 self._ship_hit() # same behaviour as ship hit
                 break
-
-
-
 
     def run_game(self):
         """Start the MAIN LOOP"""
