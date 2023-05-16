@@ -1,4 +1,4 @@
-![img](.assets/images/corochan2.bmp) 
+![img](./assets/images/corochan2.bmp) 
 
 # Virus Invasion
 
