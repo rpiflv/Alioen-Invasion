@@ -1,4 +1,5 @@
 import sys
+import os
 import pygame
 import sqlite3
 from assets.settings import Settings
@@ -11,6 +12,9 @@ from time import sleep
 from assets.button import Button
 from assets.scoreboard import Scoreboard
 import random
+
+# data = os.path.abspath("highscores.sqlite")
+data = os.path.relpath("highscores.sqlite")
 
 
 class AlienInvasion:
@@ -69,14 +73,12 @@ class AlienInvasion:
 
     def _create_lives_left(self, ships_left):
         for ship_number in range(ships_left):
-            print(ships_left)
             self._create_life(ship_number)
 
     def _create_life(self, ship_number):
         life = Lives(self)
         life_width, life_height = life.rect.size
         life.x = life_width + 2 * life_width * ship_number
-        # life.rect.x = self.settings.screen_width - 2 * life.x
         life.rect.x = life.x
         life.rect.y = self.settings.screen_height - life_height
         self.lives.add(life)
@@ -232,7 +234,7 @@ class AlienInvasion:
 
     def provide_highscore(self):
 
-        db = sqlite3.connect("highscores.sqlite")
+        db = sqlite3.connect(data)
         cursor = db.cursor()
         result = None
         cursor.execute("CREATE TABLE IF NOT EXISTS highscores (name TEXT, score INTEGER)")
@@ -246,7 +248,7 @@ class AlienInvasion:
 
     def add_high_score(self):
         # addinmg high score to the DB
-        db = sqlite3.connect("highscores.sqlite")
+        db = sqlite3.connect(data)
         self.new_high = self.stats.score
         self.scoreboard._prep_high_score()
         self.name = self.input_name()
@@ -259,7 +261,7 @@ class AlienInvasion:
 
     def provide_best3(self):
         best3 = []
-        db = sqlite3.connect("highscores.sqlite")
+        db = sqlite3.connect(data)
         cursor = db.cursor()
 
         cursor.execute("CREATE TABLE IF NOT EXISTS highscores (name TEXT, score INTEGER)")

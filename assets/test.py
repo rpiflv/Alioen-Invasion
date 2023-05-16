@@ -10,10 +10,13 @@ from assets.game_stats import GameStats
 from time import sleep
 from assets.button import Button
 from assets.scoreboard import Scoreboard
+import os 
 
+# data = os.path.abspath("../highscores.sqlite")
+data = os.path.realpath("highscore.sqlite")
 def provide_best3():
     best3 = []
-    db = sqlite3.connect("highscores.sqlite")
+    db = sqlite3.connect(data)
     cursor = db.cursor()
 
     cursor.execute("CREATE TABLE IF NOT EXISTS highscores (name TEXT, score INTEGER)")

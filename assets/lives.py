@@ -9,7 +9,7 @@ class Lives(Sprite):
         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('images/vaccine.png')
+        self.image = pygame.image.load('assets/images/vaccine.png')
         self.life_image = pygame.transform.scale(self.image, (20, 40))
         self.rect = self.life_image.get_rect()
         # self.rect.bottomright = self.screen_rect.bottomright

@@ -1,4 +1,7 @@
 import pygame
+import os
+# syringe = os.path.abspath('assets/images/syringe.png')
+syringe = os.path.relpath('assets/images/syringe.png')
 
 class Ship:
     """A class to manage ships"""
@@ -9,7 +12,7 @@ class Ship:
         self.moving_left = False
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('images/syringe.png')
+        self.image = pygame.image.load(syringe)
         self.rect = self.image.get_rect()
         # self.life = pygame.transform.scale(self.image, (20, 40))
         self.rect.midbottom = self.screen_rect.midbottom

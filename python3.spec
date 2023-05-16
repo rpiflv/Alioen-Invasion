@@ -5,11 +5,11 @@ block_cipher = None
 
 
 a = Analysis(
-    ['alien_invasion.py'],
+    ['alien_invasion.spec/usr/local/bin/python3', '/Users/flavi/Projects/Virus-Invasion/alien_invasion.py'],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=[sqlite3],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -28,7 +28,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='alien_invasion',
+    name='python3',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
